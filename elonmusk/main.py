@@ -1,6 +1,8 @@
-from elonmusk.intent_handlers import *
+from intent_handlers import *
+from flask import jsonify
+from flickr import get_random_photo
 
-def cloud_function(request):
+def cloud_function(request_json):
     """Responds to any HTTP request.
     Args:
         request (flask.Request): HTTP request object.
@@ -9,10 +11,9 @@ def cloud_function(request):
         Response object using
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
-    from flask import jsonify
-    request_json = request.get_json()
+    # request_json = request.get_json()
     print(f"DEBUG: {request_json}")
-    
+
     intent_dictionary = {
         "What Company Does Intent": handle_what_company_intent,
         "Work at SpaceX Intent - custom": handle_WorkatSpaceXIntent_followup,
@@ -30,16 +31,34 @@ def cloud_function(request):
         user_intent = query_result["intent"]["displayName"]
 
         if user_intent in intent_dictionary:
-            answer_list = intent_dictionary[user_intent](query_result)
+            print(intent_dictionary[user_intent](query_result))
+            
+            answer_list, answer_tags = intent_dictionary[user_intent](query_result)
         else:
-            answer_list = ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"]
-    except:
-        answer_list = ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"]
+            answer_list = [
+                "My engineers are working on this right now - thanks for talking to Elon Musk Bot"]
+            answer_tags = ["Elon Musk"]
 
+    except:
+        answer_list = [
+            "My engineers are working on this right now - thanks for talking to Elon Musk Bot"]
+        answer_tags = ["Elon Musk"]
+
+    print(answer_tags)
+
+    img = get_random_photo(answer_tags)
     answer = {
-      "fulfillmentMessages": [
-        {"text": {"text": answer_list}}
-      ]
+        "fulfillmentMessages": [
+            {
+                "image": {
+                    "imageUri": img if img else get_random_photo(["Elon Musk"]),
+                }
+            }, {
+                "text": {
+                    "text": answer_list
+                }
+            }
+        ],
     }
 
     return jsonify(answer)
