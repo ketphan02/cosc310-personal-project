@@ -1,4 +1,5 @@
 import random
+import twitter
 
 
 def handle_what_company_intent(query_result):
@@ -118,9 +119,10 @@ def handle_crypto_advice_intent(query_result):
                 The cryptos I am holding are limited to Bitcoin, Ethereum and Dogecoin."""
             ], [crypto]
         else:
-            return [ f'Check my tweets about {crypto}, you\'ll find the answer !'], ['Elon Musk']
+            return [f'Check my tweets about {crypto}, you\'ll find the answer !'], ['Elon Musk']
     except:
         return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
+
 
 def handle_what_is_crypto_intent(query_result):
     """Returns list of text messages for the What is Crypto Intent"""
@@ -152,12 +154,14 @@ def handle_what_is_crypto_intent(query_result):
     except:
         return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
 
+
 def handle_billionaire_tax_intent(query_result):
     """Returns list of text messages for the Billionaire Tax Intent"""
     print(f"DEBUG: Billionaire Tax Intent")
 
     try:
-        tax = query_result["parameters"]["Tax"] # note: tax can also be a litst
+        # note: tax can also be a litst
+        tax = query_result["parameters"]["Tax"]
 
         if tax == "2021" or "2021" in tax:
             return [
@@ -171,6 +175,7 @@ def handle_billionaire_tax_intent(query_result):
             return ["""My wealth ‘isn’t some deep mystery. My taxes are super simple, and I pay them."""], ['Elon Musk']
     except:
         return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
+
 
 def handle_daily_routine_intent(query_result):
     print(f"DEBUG: Daily Routine Intent")
@@ -216,7 +221,7 @@ def handle_daily_routine_intent(query_result):
 def handle_NeuralinkAppIntent_followup(query_result):
     """Returns list of text messages for the Neuralink Applications follow-up Intent"""
     print(f"DEBUG: Neuralink Applications follow-up Intent")
-    
+
     try:
         app = query_result["parameters"]["NeuralinkApp"]
 
@@ -246,10 +251,11 @@ def handle_NeuralinkAppIntent_followup(query_result):
     except:
         return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
 
+
 def handle_fight_putin_intent(query_result):
     """Returns list of text messages for the Fight Putin Intent"""
     print(f"DEBUG: Fight Putin Intent")
-    
+
     try:
         russia = query_result["parameters"]["russia"]
 
@@ -257,7 +263,7 @@ def handle_fight_putin_intent(query_result):
             return [random.choice([
                 "I think I should fight Putin barehand, and whoever wins the fight wins the war",
                 "I will challenge Putin to a fight, that's what I have to say"]
-                )
+            )
             ], [russia]
         elif russia == "Russia":
             return [
@@ -267,16 +273,17 @@ def handle_fight_putin_intent(query_result):
                 ])
             ], [russia]
         elif russia == "Kremlin":
-            return ["Kremlin is threatening the International Space Station - but SpaceX can step in to keep it running",], [russia]
+            return ["Kremlin is threatening the International Space Station - but SpaceX can step in to keep it running", ], [russia]
         else:
             return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
     except:
         return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
 
+
 def handle_stand_with_ukraine_intent(query_result):
     """Returns list of text messages for the Stand With Ukraine Intent"""
     print(f"DEBUG: Stand With Ukraine Intent")
-    
+
     try:
         ukraine = query_result["parameters"]["ukraine"]
 
@@ -289,4 +296,16 @@ def handle_stand_with_ukraine_intent(query_result):
         else:
             return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
     except:
+        return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
+
+
+def handle_last_tweet_intent(query_result):
+    print(f'DEBUG: Last Tweet Intent')
+
+    try:
+        if (query_result['parameters']['tweet']):
+            return twitter.get_latest_tweet(), ['Twitter']
+        else:
+            return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
+    except Exception:
         return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
