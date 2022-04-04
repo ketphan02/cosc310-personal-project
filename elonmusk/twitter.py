@@ -1,14 +1,10 @@
-import time
-from typing import Tuple
 import tweepy
 from tweepy import OAuthHandler
-
-
 import os
 from dotenv import load_dotenv
 
 root_path = os.path.dirname(os.path.abspath(__file__))
-env_path = os.path.join(root_path, '.env')
+env_path = os.path.join(root_path, '..', '.env')
 load_dotenv(env_path)
 
 # Authentication
@@ -28,7 +24,7 @@ except Exception:
     print('Failed authentication')
 
 
-def get_latest_tweet() -> Tuple(str, bool):
+def get_latest_tweet():
     elon_musk_tweets = api.user_timeline(screen_name='elonmusk')
 
     try:

@@ -1,5 +1,6 @@
 import random
 import twitter
+from flickr import get_random_photo
 
 
 def handle_what_company_intent(query_result):
@@ -13,7 +14,7 @@ def handle_what_company_intent(query_result):
             return [
                 """Tesla is accelerating the world's transition to sustainable 
                 energy with electric cars - maybe you should buy one!"""
-            ], [company]
+            ], [company, 'car']
         elif company == "SpaceX":
             return [
                 """SpaceX designs, manufactures and launches advanced rockets and spacecraft.
@@ -303,8 +304,11 @@ def handle_last_tweet_intent(query_result):
     print(f'DEBUG: Last Tweet Intent')
 
     try:
-        if (query_result['parameters']['tweet']):
-            return twitter.get_latest_tweet(), ['Twitter']
+        if (query_result['parameters']['Tweet']):
+            content, is_ok = twitter.get_latest_tweet()
+            if is_ok:
+                return ['Elon has tweeted: ' + content], content.split(' '), 'any'
+            return [content], ['fail']
         else:
             return ["My engineers are working on this right now - thanks for talking to Elon Musk Bot"], ['Elon Musk']
     except Exception:
