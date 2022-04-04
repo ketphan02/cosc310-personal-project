@@ -8,10 +8,10 @@ root_path = os.path.dirname(os.path.abspath(__file__))
 env_path = os.path.join(root_path, '..', '.env')
 load_dotenv(env_path)
 
-f = flickrapi.FlickrAPI(
-    api_key=os.environ['FLICKR_API_PUBLIC_KEY'],
-    secret=os.environ['FLICKR_API_SECRET_KEY'],
-)
+api_key = os.environ['FLICKR_API_PUBLIC_KEY']
+api_key_secret = os.environ['FLICKR_API_SECRET_KEY']
+
+f = flickrapi.FlickrAPI(api_key=api_key, secret=api_key_secret)
 
 
 def get_random_photo(tags=List[str], tag_mode='all'):
