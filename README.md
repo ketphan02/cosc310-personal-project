@@ -93,6 +93,8 @@ f.walk(tag_mode=tag_mode, tags=';'.join(tags), extras='url_o')
 * [Python](https://www.python.org/) - Back End
 * [Dialogflow](https://cloud.google.com/dialogflow/docs) - Natural Language Processing
 * [Telegram](https://telegram.org/) - User Interface
+* [Twitter API](https://www.tweepy.org/) - Tweets crawling
+* [Flickr API](https://stuvel.eu/software/flickrapi/) - Images fetching
 
 ## Previous work
 
