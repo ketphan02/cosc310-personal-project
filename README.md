@@ -96,13 +96,5 @@ f.walk(tag_mode=tag_mode, tags=';'.join(tags), extras='url_o')
 * [Twitter API](https://www.tweepy.org/) - Tweets crawling
 * [Flickr API](https://stuvel.eu/software/flickrapi/) - Images fetching
 
-## Previous work
-
-- [Kiet Phan](https://github.com/ketphan02)
-- [Ivan Carvalho](https://github.com/IvanIsCoding)
-- [Lydia Lin](https://github.com/yuqi88)
-- [Akshat Singal](https://github.com/aksingal-dev)
-- [Paula Wong-Chung](https://github.com/KafkaNoNeko)
-
 ## Author
 - [Kiet Phan](https://github.com/ketphan02)
