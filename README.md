@@ -6,9 +6,12 @@
 
 Elon Musk Bot is a chatbot inspired by the entrepreneur and billionaire Elon Musk. It can answer questions about Tesla, SpaceX, cryptocurrencies, and more - give it a try!
 
+## Presentation
+<div style="height: 0; padding-bottom: calc(62.50%); position:relative; width: 100%;"><iframe allow="autoplay; gyroscope;" allowfullscreen height="100%" referrerpolicy="strict-origin" src="https://www.kapwing.com/e/624c5e61653c6c00ae10ce33" style="border:0; height:100%; left:0; overflow:hidden; position:absolute; top:0; width:100%" title="" width="100%"></iframe></div>
+
 ## Talking to the Bot
 
-The bot is available at https://t.me/COSC310_ElonMusk_Dialogflow_bot
+The bot is available at [t.me/COSC310_ElonMusk_Dialogflow_bot](https://t.me/cosc310_personal_project_bot) (need to run webhook locally to run it)
 
 ## Executing Tests
 
